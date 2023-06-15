@@ -1,0 +1,84 @@
+{
+  "name": "@ali/super-icon",
+  "version": "1.0.7",
+  "description": "",
+  "main": "./index.cjs.js",
+  "module": "./icons-react/index.js",
+  "types": "./icons-react/index.d.ts",
+  "scripts": {
+    "start": "dumi dev",
+    "dev": "rollup -w -c",
+    "addIcon": "node addIcon.js",
+    "build": "rollup -c",
+    "build-doc": "dumi build",
+    "doc": "dumi build --dumi",
+    "lint:fix": "npx eslint \"src/**/*.{ts,tsx}\" --fix",
+    "publish": "npm run build && tnpm publish ./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:infinite-ui/super-icon.git"
+  },
+  "author": "lyn177830",
+  "license": "ISC",
+  "devDependencies": {
+    "@ali/infinite-ui": "^2.1.21",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.9",
+    "@babel/preset-typescript": "^7.14.5",
+    "@commitlint/cli": "^17.4.3",
+    "@commitlint/config-conventional": "^17.4.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "@rollup/plugin-url": "^8.0.1",
+    "@svgr/rollup": "^7.0.0",
+    "@types/react": "^17.0.15",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "chalk": "^4.1.2",
+    "dumi": "^1.1.24",
+    "eslint": "^8.34.0",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "3.1.0",
+    "lint-staged": "^13.1.2",
+    "lorem-ipsum": "^2.0.3",
+    "prettier": "^2.8.4",
+    "react-scripts": "latest",
+    "rollup": "^2.78.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-svg": "^2.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
+  },
+  "sideEffects": [
+    "src/icons-react/demos/components/demo-block/index.less"
+  ],
+  "lint-staged": {
+    "*.{ts,js}": [
+      "node --max_old_space_size=8192 ./node_modules/.bin/prettier -w",
+      "node --max_old_space_size=8192 ./node_modules/.bin/eslint --fix --color",
+      "git add"
+    ]
+  }
+}
